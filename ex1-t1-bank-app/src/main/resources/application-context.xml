@@ -5,4 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- Define the MapClientRepository bean -->
+    <bean id="mapClientRepository" class="com.luxoft.bankapp.service.storage.MapClientRepository"/>
+
+    <!-- Define the BankingImpl bean and autowire by TYPE, so Spring automatically
+      injects mapClientRepository into BankingImpl's repository filed-->
+    <bean id="banking" class="com.luxoft.bankapp.service.BankingImpl" autowire="byType"/>
+
 </beans>

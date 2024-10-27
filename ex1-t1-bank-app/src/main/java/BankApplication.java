@@ -10,19 +10,22 @@ import com.luxoft.bankapp.service.BankingImpl;
 import com.luxoft.bankapp.model.Client.Gender;
 import com.luxoft.bankapp.service.storage.ClientRepository;
 import com.luxoft.bankapp.service.storage.MapClientRepository;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BankApplication {
-
     private static final String[] CLIENT_NAMES =
             {"Jonny Bravo", "Adam Budzinski", "Anna Smith"};
 
     public static void main(String[] args) {
 
-        ClientRepository repository = new MapClientRepository();
-        Banking banking = initialize(repository);
+        // Load the Spring application context
+        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+
+        // Initialize Banking bean using the modified initialize method
+        Banking banking = initialize(context);
 
         workWithExistingClients(banking);
-
         bankingServiceDemo(banking);
 
 //        bankReportsDemo(repository);
@@ -100,10 +103,17 @@ public class BankApplication {
     /*
      * Method that creates a few clients and initializes them with sample values
      */
-    public static Banking initialize(ClientRepository repository) {
 
-        Banking banking = new BankingImpl();
-        banking.setRepository(repository);
+    /**
+     * This method now takes ApplicationContext as a parameter. No longer need to
+     * manually set up the repository in BankingImpl since Spring handles the injection.
+     * @param context
+     * @return the Banking bean directly from the context
+     */
+    public static Banking initialize(ApplicationContext context) {
+
+        // Retrieve the Banking bean from the application context
+        Banking banking = (Banking) context.getBean("banking");
 
         Client client_1 = new Client(CLIENT_NAMES[0], Gender.MALE);
 

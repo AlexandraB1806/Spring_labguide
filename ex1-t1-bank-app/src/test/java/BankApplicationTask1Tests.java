@@ -32,14 +32,14 @@ public class BankApplicationTask1Tests {
 
     @BeforeEach
     public void init() {
-        try {
-            BankApplication.class.getMethod("initialize", ApplicationContext.class).invoke(null, applicationContext);
-        } catch (Exception e) {
-            // ignore
-        }
+//        try {
+//            BankApplication.class.getMethod("initialize", ApplicationContext.class).invoke(null, applicationContext);
+//        } catch (Exception e) {
+//            // ignore
+//        }
 
         // TODO you can replace code above with this when will have the method
-//        BankApplication.initialize(applicationContext);
+        BankApplication.initialize(applicationContext);
     }
 
     @Test
