@@ -51,7 +51,7 @@ public abstract class AbstractAccount {
         return balance;
     }
 
-    void setBalance(double balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 

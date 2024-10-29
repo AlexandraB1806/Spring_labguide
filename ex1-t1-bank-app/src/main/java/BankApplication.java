@@ -20,8 +20,8 @@ public class BankApplication {
 
     public static void main(String[] args) {
 
-        // Load the Spring application context
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+        // Load the Spring application context (for  clients)
+        ApplicationContext context = new ClassPathXmlApplicationContext("test-clients.xml");
 
         // Initialize Banking bean using the modified initialize method
         Banking banking = initialize(context);
@@ -117,18 +117,9 @@ public class BankApplication {
         // Retrieve the Banking bean from the application context
         Banking banking = (Banking) context.getBean("banking");
 
-        Client client_1 = new Client(CLIENT_NAMES[0], Gender.MALE);
-
-        AbstractAccount savingAccount = new SavingAccount(1000);
-        client_1.addAccount(savingAccount);
-
-        AbstractAccount checkingAccount = new CheckingAccount(1000);
-        client_1.addAccount(checkingAccount);
-
-        Client client_2 = new Client(CLIENT_NAMES[1], Gender.MALE);
-
-        AbstractAccount checking = new CheckingAccount(1500);
-        client_2.addAccount(checking);
+        // Retrieve the Client bean from the test-clients.xml
+        Client client_1 = (Client) context.getBean("client1");
+        Client client_2 = (Client) context.getBean("client2");
 
         banking.addClient(client_1);
         banking.addClient(client_2);

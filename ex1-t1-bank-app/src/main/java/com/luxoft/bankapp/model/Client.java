@@ -184,6 +184,11 @@ public class Client {
         return builder.toString();
     }
 
+    // Added setter method for accounts to the Client class
+    public void setAccounts(List<AbstractAccount> accounts) {
+        this.accounts = accounts;
+    }
+
     public long getId() {
         return id;
     }
