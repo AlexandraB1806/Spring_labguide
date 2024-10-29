@@ -9,7 +9,11 @@
     <bean id="mapClientRepository" class="com.luxoft.bankapp.service.storage.MapClientRepository"/>
 
     <!-- Define the BankingImpl bean and autowire by TYPE, so Spring automatically
-      injects mapClientRepository into BankingImpl's repository filed-->
+      injects mapClientRepository into BankingImpl's repository field -->
     <bean id="banking" class="com.luxoft.bankapp.service.BankingImpl" autowire="byType"/>
+
+    <!-- Define the BankReportServiceImpl bean and autowire by TYPE, so Spring automatically
+      injects mapClientRepository into BankReportServiceImpl's repository field -->
+    <bean id="bankReportService" class="com.luxoft.bankapp.service.BankReportServiceImpl" autowire="byType"/>
 
 </beans>

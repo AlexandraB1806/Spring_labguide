@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BankApplication {
+
     private static final String[] CLIENT_NAMES =
             {"Jonny Bravo", "Adam Budzinski", "Anna Smith"};
 
@@ -26,23 +27,24 @@ public class BankApplication {
         Banking banking = initialize(context);
 
         workWithExistingClients(banking);
+
         bankingServiceDemo(banking);
 
-//        bankReportsDemo(repository);
+        bankReportsDemo(context);
     }
 
-    public static void bankReportsDemo(ClientRepository repository) {
+    public static void bankReportsDemo(ApplicationContext context) {
 
         System.out.println("\n=== Using BankReportService ===\n");
 
-        BankReportService reportService = new BankReportServiceImpl();
-        reportService.setRepository(repository);
+        // Retrieve the BankReportService bean from the application context
+        BankReportService bankReportService = (BankReportService) context.getBean("bankReportService");
 
-        System.out.println("Number of clients: " + reportService.getNumberOfBankClients());
+        System.out.println("Number of clients: " + bankReportService.getNumberOfBankClients());
 
-        System.out.println("Number of accounts: " + reportService.getAccountsNumber());
+        System.out.println("Number of accounts: " + bankReportService.getAccountsNumber());
 
-        System.out.println("Bank Credit Sum: " + reportService.getBankCreditSum());
+        System.out.println("Bank Credit Sum: " + bankReportService.getBankCreditSum());
     }
 
     public static void bankingServiceDemo(Banking banking) {

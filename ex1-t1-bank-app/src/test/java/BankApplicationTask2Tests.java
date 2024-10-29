@@ -39,15 +39,15 @@ public class BankApplicationTask2Tests {
 
     @BeforeEach
     public void init() {
-        try {
-            BankApplication.class.getMethod("initialize", ApplicationContext.class).invoke(null, applicationContext);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // ignore
-        }
+//        try {
+//            BankApplication.class.getMethod("initialize", ApplicationContext.class).invoke(null, applicationContext);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            // ignore
+//        }
 
         // TODO you can replace code above with this when will have the method
-//        BankApplication.initialize(applicationContext);
+        BankApplication.initialize(applicationContext);
     }
 
     @Test
